@@ -1,0 +1,39 @@
+version: '3'
+services:
+  postgre:
+    container_name: db
+    image: mysql
+    restart: always
+    networks:
+      - nice
+    volumes:
+     - db:/var/lib/mysql  # Adjusted for typical MariaDB data directory
+     - ./src/src/postgre/tools/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+
+  backend:
+    container_name: backend
+    build: ./backend
+    networks:
+      - nice
+    volumes:
+      -  backend:/usr/src/app
+    ports:
+      - "3000:3000"
+
+networks:
+  nice:
+    driver: bridge
+
+volumes:
+  db:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ecamara/dataTranscendance/postgre
+      o: bind
+  backend:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ecamara/dataTranscendance/backend
+      o: bind
