@@ -19,7 +19,7 @@ clean:
 cleanVolumens:
 	docker volume ls -q
 	docker volume rm --force $$(docker volume ls -q)
-	rm -rf /home/ecamara/data/mariadb/*
-	rm -rf /home/ecamara/data/wordpress/*
+	rm -rf /home/ecamara/dataTranscendance/backend/*
+	rm -rf /home/ecamara/dataTranscendance/postgre/*
 re: clean cleanVolumens run  status
 

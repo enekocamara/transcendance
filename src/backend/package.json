@@ -2,11 +2,11 @@
   "name": "my-sample-app",
   "version": "1.0.0",
   "description": "A sample NestJs program",
-  "main": "main.js",
+  "main": "main.ts",
   "scripts": {
-    "start": "node main.js",
-    "start:dev": "nodemon main.js",
+    "build": "nest build",
+    "start": "node src/main.ts",
+    "start:dev": "ts-node src/main.ts --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
-

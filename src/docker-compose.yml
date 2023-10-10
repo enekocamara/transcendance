@@ -6,9 +6,11 @@ services:
     restart: always
     networks:
       - nice
+    env_file:
+      - .env
     volumes:
      - db:/var/lib/mysql  # Adjusted for typical MariaDB data directory
-     - ./src/src/postgre/tools/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+     - ./postgre/tools/setup.sql:/docker-entrypoint-initdb.d/setup.sql
 
   backend:
     container_name: backend
@@ -17,6 +19,8 @@ services:
       - nice
     volumes:
       -  backend:/usr/src/app
+    env_file:
+      - .env
     ports:
       - "3000:3000"
 
