@@ -1,25 +1,57 @@
+NAME=Dockerfile
 COMPOSE_FILE=src/docker-compose.yml
 
+$(NAME):
+	make run
+
+# Docker volumes & containers management
 build:
 	docker compose -f $(COMPOSE_FILE) build
-
-run: build
+up:
 	docker compose -f $(COMPOSE_FILE) up -d
+stop:
+	@echo "\033[1;33mStopping containers...\033[0m"
+	docker compose -f $(COMPOSE_FILE) stop
+run:
+	@echo "\033[1;33mBuilding containers...\033[0m"
+	make build
+	@echo "\033[1;33mRaising up containers...\033[0m"
+	@sleep 1
+	make up
+	@echo "\033[1;32mAll has been made!\033[0m"
+down:
+	@echo "\033[1;33mShutting down containers...\033[0m"
+	docker compose -f $(COMPOSE_FILE) down --volumes
+dwst:
+	make down
+	make stop
+	@echo "👋 \033[1;32mThat's all! See you later\033[0m"
 
+# Cleaning commands
+prune:
+	docker system prune -f
 status:
 	docker ps -a
-
-stop:
-	docker compose -f $(COMPOSE_FILE) down
-
 clean:
 	docker compose -f $(COMPOSE_FILE) down
+	docker rmi -f mysql src-backend
 	docker system prune -f
-
-cleanVolumens:
+force-stop:
+	@echo "\033[1;33mForcing containers to stop... \033[0m\033[30m(cmd: docker compose -f stop)\033[0m"
+	@docker compose -f $(COMPOSE_FILE) stop
+	@echo "\033[1;32mDone!\033[0m"
+	@echo "\033[1;31mPruning... \033[0m\033[30m(cmd: docker system prune -f)\033[0m"
+	@docker rmi -f mysql src-backend && docker system prune -f
+	@echo "\033[1;32mDone!\033[0m"
+cleanVolumes:
 	docker volume ls -q
 	docker volume rm --force $$(docker volume ls -q)
-	rm -rf /home/ecamara/dataTranscendance/backend/*
-	rm -rf /home/ecamara/dataTranscendance/postgre/*
-re: clean cleanVolumens run  status
 
+re:
+	@echo "🔁 \033[1;33mResetting everything... \033[0m"
+	make clean
+	make force-stop
+	make run
+	make status
+
+.PHONY: build up stop run down prune status clean force-stop cleanVolumes

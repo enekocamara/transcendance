@@ -5,18 +5,18 @@ services:
     image: mysql
     restart: always
     networks:
-      - nice
-    env_file:
-      - .env
+      - bridge
     volumes:
      - db:/var/lib/mysql  # Adjusted for typical MariaDB data directory
      - ./postgre/tools/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    env_file:
+      - .env
 
   backend:
     container_name: backend
     build: ./backend
     networks:
-      - nice
+      - bridge
     volumes:
       -  backend:/usr/src/app
     env_file:
@@ -25,7 +25,7 @@ services:
       - "3000:3000"
 
 networks:
-  nice:
+  bridge:
     driver: bridge
 
 volumes:
@@ -33,11 +33,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/ecamara/dataTranscendance/postgre
+      device: /Users/$USER/Desktop/transcendence/data/db
       o: bind
   backend:
     driver: local
     driver_opts:
       type: none
-      device: /home/ecamara/dataTranscendance/backend
+      device: /Users/$USER/Desktop/transcendence/data/backend
       o: bind
