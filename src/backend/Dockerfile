@@ -5,12 +5,12 @@ FROM node:alpine3.18
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the container
-COPY ./backend/package*.json ./
+COPY ./package*.json ./
 
-RUN npm install pg svelte winston
+RUN npm install pg winston
 
 # Copy the rest of the application to the container
-COPY ./backend .
+COPY . .
 
 # Expose port 3000, which is the default port that NestJS apps listen on
 EXPOSE 3000

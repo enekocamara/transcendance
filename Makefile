@@ -35,14 +35,14 @@ status:
 clean:
 	make stop
 	docker compose -f $(COMPOSE_FILE) down
-	docker rmi -f postgres src-app
+	docker rmi -f postgres backend frontend
 	docker system prune -f
 force-stop:
 	@echo "\033[1;33mForcing containers to stop... \033[0m\033[30m(cmd: docker compose -f stop)\033[0m"
 	@docker compose -f $(COMPOSE_FILE) stop
 	@echo "\033[1;32mDone!\033[0m"
 	@echo "\033[1;31mPruning... \033[0m\033[30m(cmd: docker system prune -f)\033[0m"
-	@docker rmi -f postgres src-app && docker system prune -f
+	@docker rmi -f postgres src-backend src-frontend && docker system prune -f
 	@echo "\033[1;32mDone!\033[0m"
 cleanVolumes:
 	docker volume ls -q

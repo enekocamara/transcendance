@@ -1,0 +1,12 @@
+version: '3'
+services:
+  svelte-builder:
+    build:
+  
+  frontend:
+    image: nginx:stable-alpine
+    environment:
+      - STATUS=production
+    volumes:
+      - static-content:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
