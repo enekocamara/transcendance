@@ -33,24 +33,36 @@ prune:
 status:
 	docker ps -a
 clean:
+	make stop
 	docker compose -f $(COMPOSE_FILE) down
-	docker rmi -f mysql src-backend
+	docker rmi -f postgres src-app
 	docker system prune -f
 force-stop:
 	@echo "\033[1;33mForcing containers to stop... \033[0m\033[30m(cmd: docker compose -f stop)\033[0m"
 	@docker compose -f $(COMPOSE_FILE) stop
 	@echo "\033[1;32mDone!\033[0m"
 	@echo "\033[1;31mPruning... \033[0m\033[30m(cmd: docker system prune -f)\033[0m"
-	@docker rmi -f mysql src-backend && docker system prune -f
+	@docker rmi -f postgres src-app && docker system prune -f
 	@echo "\033[1;32mDone!\033[0m"
 cleanVolumes:
 	docker volume ls -q
 	docker volume rm --force $$(docker volume ls -q)
 
 re:
-	@echo "🔁 \033[1;33mResetting everything... \033[0m"
+	@echo "\033[1;31m⚠ THIS WILL RESET EVERYTHING, EVEN THE VOLUMES CONTENT!\n\033[1;33m¿Are you sure? \033[0m"
+	@if [[ -z "$(CI)" ]]; then \
+		REPLY="" ; \
+		read -p "[y/n] > " -r ; \
+		if [[ ! $$REPLY =~ ^[Yy]$$ ]]; then \
+			printf $(_ERROR) "\n\033[1;32mOK, process was cancelled.\033[0m\n" ; \
+			exit 1 ; \
+		fi \
+	fi
+	@echo "\n🔁 \033[1;33mResetting everything... \033[0m"
 	make clean
-	make force-stop
+	make cleanVolumes
+	@rm -rf ./src/data/backend/*
+	@rm -rf ./src/data/postgre/*
 	make run
 	make status
 

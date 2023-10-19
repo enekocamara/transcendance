@@ -2,23 +2,23 @@ version: '3'
 services:
   postgre:
     container_name: db
-    image: mysql
+    image: postgres:latest
     restart: always
     networks:
       - bridge
     volumes:
-     - db:/var/lib/mysql  # Adjusted for typical MariaDB data directory
-     - ./postgre/tools/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+     - db:/var/lib/postgresql/data
     env_file:
       - .env
 
-  backend:
-    container_name: backend
-    build: ./backend
+  app:
+    container_name: app
+    build: ./app
     networks:
       - bridge
     volumes:
-      -  backend:/usr/src/app
+      -  app:/usr/src/app/src
+      -  /usr/src/app/node_modules
     env_file:
       - .env
     ports:
@@ -33,11 +33,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/$USER/Desktop/transcendence/data/db
+      device: /Users/ullorent/Desktop/transcendence/src/data/postgre
       o: bind
-  backend:
+  app:
     driver: local
     driver_opts:
       type: none
-      device: /Users/$USER/Desktop/transcendence/data/backend
+      device: /Users/ullorent/Desktop/transcendence/src/app/backend
       o: bind
