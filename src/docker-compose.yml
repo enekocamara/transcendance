@@ -27,16 +27,18 @@ services:
 
   frontend:
     container_name: frontend
-    build: ./frontend
+    build: ./frontend3
     restart: always
     networks:
       - bridge
     volumes:
-      - ./frontend/src:/usr/src/app/src
+      - ./frontend3/src:/usr/src/app/src
     env_file:
       - .env
     ports:
       -  "5000:5000"
+    #command: /bin/sh -c "while sleep 1000; do :; done"
+
 
 networks:
   bridge:
@@ -47,11 +49,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ullorent/Desktop/transcendence/src/data/postgre
+      device: /Users/$USER/Desktop/transcendence/src/data/postgre
       o: bind
   backend:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ullorent/Desktop/transcendence/src/backend
+      device: /Users/$USER/Desktop/transcendence/src/backend
       o: bind
