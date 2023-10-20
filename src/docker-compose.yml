@@ -27,16 +27,16 @@ services:
 
   frontend:
     container_name: frontend
-    build: ./frontend3
+    build: ./frontend
     restart: always
     networks:
       - bridge
     volumes:
-      - ./frontend3/src:/usr/src/app/src
+      - ./frontend/src:/usr/src/app/src
     env_file:
       - .env
     ports:
-      -  "5000:5000"
+      -  "5173:5173"
     #command: /bin/sh -c "while sleep 1000; do :; done"
 
 

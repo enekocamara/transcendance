@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Este es el index</h1>
+
+<a href="/penguin">Haz clic aquí para ir a la web del pingüino</a>
+
+<script>
+    import Button from '../components/button.svelte';
+</script>

@@ -1,7 +1,7 @@
 <script>
 		import { onMount } from 'svelte';
 		async function fetchData() {
-			console.log('LOOOOOOOOOL');
+			console.log('prueba');
 			try {
 				const response = await fetch('http://localhost:3000/spheniscidae', {
 					method: 'GET',
