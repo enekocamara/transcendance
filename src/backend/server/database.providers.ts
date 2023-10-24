@@ -18,33 +18,30 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
         });
     }
 
-    async getClient(): Promise<Client>{
-        const client = await this.pool.connect();
-        return client;
+    async getClient(): Promise<Client | null>{
+        try{
+            const client = await this.pool.connect();
+            return client;
+        }catch(error){
+            this.winston.error('Failed to connect client', error);
+            return null;
+        }
     }
 
     async addPenguin() {
         this.winston.log('PINGUINGGGGGGG');
-        try {
-            const client = await this.getClient();
+        const client = await this.getClient();
+        if (client != null)
+        {
             try {
                 const query = "INSERT INTO public.users (username, password, image_index) VALUES($1, $2, $3) RETURNING *;";
                 const params = ['test_user', 'hashed_password', 1];
                 const result = await client.query(query, params);
-
-                this.winston.log(result.rows[0]); // This will log the inserted row
-                if (result.rowCount === 1) {
-                    this.winston.log('Successfully added a penguin.');
-                } else {
-                    this.winston.log('Failed to add a penguin.');
-                }
             } catch (error) {
                 this.winston.error('Database query error:', error.message);
             } finally {
                 this.releaseClient(client);
             }
-        } catch (error){
-            this.winston.error('Database connection error: ', error.message);
         }
     }
     //INSERT INTO penguins(id, name) VALUES ('1', 'ecamara')

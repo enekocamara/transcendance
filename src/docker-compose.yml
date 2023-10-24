@@ -31,11 +31,13 @@ services:
   frontend:
     container_name: frontend
     build: ./frontend
-    restart: always
+    #restart: always
     networks:
       - bridge
     volumes:
-      - ./frontend/src:/usr/src/app/src
+      - ./frontend:/usr/src/app
+      -  /usr/src/app/node_modules
+      #- ./frontend/src:/usr/src/app/src
     env_file:
       - .env
     ports:

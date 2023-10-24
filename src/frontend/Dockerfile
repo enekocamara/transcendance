@@ -4,10 +4,11 @@ FROM node:alpine3.18
 # Set the working directory in the Docker containerx
 WORKDIR /usr/src/app
 
+RUN chown -R node:node /usr/src/app
 # Copy package.json and package-lock.json to the container
 COPY ./package*.json ./
 
-RUN npm install
+RUN npm install svelte-preprocess
 
 # Copy the rest of the application to the container
 COPY . .
