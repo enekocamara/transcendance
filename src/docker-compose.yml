@@ -8,8 +8,11 @@ services:
       - bridge
     volumes:
      - db:/var/lib/postgresql/data
+     - ./postgre/tools:/docker-entrypoint-initdb.d
     env_file:
       - .env
+    expose:
+      - "5432"
 
   backend:
     container_name: backend

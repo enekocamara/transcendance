@@ -9,7 +9,7 @@ export class SpheniscidaeController {
   @Get()
   getSpheniscidae(): string {
     this.databaseService.addPenguin();
-    this.winston.log('New pinguin.')
+    this.winston.log('New pinguin.');
     return 'Hello pingu!';
   }
 }
