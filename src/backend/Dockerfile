@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the container
 COPY ./package*.json ./
 
-RUN npm install pg winston async-retry
+RUN npm install async-retry
 
 # Copy the rest of the application to the container
 COPY . .

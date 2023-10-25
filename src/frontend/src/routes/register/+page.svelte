@@ -2,8 +2,16 @@
     let username = "";
     let password = "";
 
-    function handleSubmit() {
-        // Logic to handle submission, such as sending to an API endpoint
+    async function handleSubmit() {
+        const response = await fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+        //const data = await response.json();
+        //console.log(data); // Process response here
     }
 </script>
 

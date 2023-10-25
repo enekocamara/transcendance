@@ -1,5 +1,5 @@
 import { Controller, Get, UseInterceptors } from '@nestjs/common';
-import { DatabaseService} from './database.providers';
+import { DatabaseService} from './database/database.providers';
 import {WinstonService} from './winston.service';
 
 @Controller('spheniscidae')

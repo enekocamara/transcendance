@@ -1,14 +1,17 @@
 import { Injectable,OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { Pool, Client } from 'pg';
-import { WinstonService} from './winston.service'
-import retry from 'async-retry';
+import { WinstonService} from '../winston.service'
+//import retry from 'async-retry';
+import { CreateUserDto } from '../users/createUser.dto';
+import { AuthService } from '../authentification/auth.service';
 
 
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy{
     private pool: Pool;
 
-    constructor (private winston :WinstonService){
+    constructor (private winston :WinstonService,
+                 private auth: AuthService){
         this.pool = new Pool({
             user: process.env.POSTGRES_USER,
             host: process.env.POSTGRES_HOST,
@@ -25,6 +28,39 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
         }catch(error){
             this.winston.error('Failed to connect client', error);
             return null;
+        }
+    }
+
+    async registerClient(createUserDto: CreateUserDto): Promise<boolean>{
+        const  client = await this.getClient();
+        if (!client)
+            return false;
+        try {
+            const query = "INSERT INTO public.users (username, password, image_index) VALUES($1, $2, $3) RETURNING *;";
+            const params = [createUserDto.username, this.auth.hashPassword(createUserDto.password), 1];
+            const result = await client.query(query, params);
+        } catch (error) {
+            this.winston.error('Database query error:', error.message);
+        } finally {
+            this.winston.log(createUserDto.username + ' client regisered.')
+            this.releaseClient(client);
+        }
+    }
+
+    async loginClient(createUserDto: CreateUserDto) : Promise<boolean>{
+        const  client = await this.getClient();
+        if (!client)
+            return false;
+        try {
+            const query = `SELECT hashed_password FROM users WHERE username = $1`;
+            const params = createUserDto.username;
+            const result = await client.query(query, params);
+        } catch (error) {
+            this.winston.error('Database query error:', error.message);
+            return false;
+        } finally {
+            this.releaseClient(client);
+            return true;
         }
     }
 
