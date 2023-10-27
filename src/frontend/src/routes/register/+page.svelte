@@ -1,17 +1,24 @@
 <script>
+    import getPublicIp from '../../components/getPublicIp.js';
     let username = "";
     let password = "";
+    let message  = "";
 
     async function handleSubmit() {
-        const response = await fetch('http://localhost:3000/register', {
+        const publicIp = await getPublicIp();
+        const response = await fetch('http://' + publicIp + ':3000/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({ username, password })
         });
-        //const data = await response.json();
-        //console.log(data); // Process response here
+        if (response.ok) {
+          const data = await response.json();
+          message = data.message; // Set the message from the response
+        } else {
+          message = 'Error: Registration failed'; // Set an error message
+        }
     }
 </script>
 
@@ -24,3 +31,7 @@
     
     <button type="submit">Submit</button>
 </form>
+
+{#if message}
+  <p>{message}</p>
+{/if}

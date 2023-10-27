@@ -1,9 +1,12 @@
 <script>
 		import { onMount } from 'svelte';
+		import getPublicIp from './getPublicIp.js';
+
 		async function fetchData() {
 			console.log('prueba');
 			try {
-				const response = await fetch('http://localhost:3000/spheniscidae', {
+				const publicIp = await getPublicIp();
+				const response = await fetch('http://${publicIp}:3000/spheniscidae', {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',

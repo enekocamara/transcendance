@@ -33,18 +33,21 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
 
     async registerClient(createUserDto: CreateUserDto): Promise<boolean>{
         const  client = await this.getClient();
+        this.winston.log(client);
         if (!client)
             return false;
         try {
             const query = "INSERT INTO public.users (username, password, image_index) VALUES($1, $2, $3) RETURNING *;";
             const params = [createUserDto.username, this.auth.hashPassword(createUserDto.password), 1];
             const result = await client.query(query, params);
+            this.winston.log('Hashed password for user: ' + createUserDto.username + ' : [' + createUserDto.password + ']');
+            this.winston.log(createUserDto.username + ' client regisered.');
         } catch (error) {
             this.winston.error('Database query error:', error.message);
-        } finally {
-            this.winston.log(createUserDto.username + ' client regisered.')
-            this.releaseClient(client);
+            return false;
         }
+        this.releaseClient(client);
+        return true;
     }
 
     async loginClient(createUserDto: CreateUserDto) : Promise<boolean>{
@@ -75,9 +78,8 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
                 const result = await client.query(query, params);
             } catch (error) {
                 this.winston.error('Database query error:', error.message);
-            } finally {
-                this.releaseClient(client);
             }
+            this.releaseClient(client);
         }
     }
     //INSERT INTO penguins(id, name) VALUES ('1', 'ecamara')
