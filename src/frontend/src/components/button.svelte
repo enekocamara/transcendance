@@ -10,6 +10,7 @@
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*'
 					},
 					// Include additional request options if necessary
 				});

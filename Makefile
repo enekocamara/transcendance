@@ -2,9 +2,10 @@ NAME=Dockerfile
 COMPOSE_FILE=src/docker-compose.yml
 
 $(NAME):
+	./src/ip.sh
 	make run
 #	chmod +x ./src/ip.sh
-# ./src/ip.sh
+# 
 
 # Docker volumes & containers management
 build:

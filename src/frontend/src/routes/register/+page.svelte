@@ -1,24 +1,24 @@
 <script>
-    import getPublicIp from '../../components/getPublicIp.js';
+    //import getPublicIp from '../../components/getPublicIp.js';
+    //import {config} from 'dotenv';
+    
     let username = "";
     let password = "";
     let message  = "";
 
     async function handleSubmit() {
-        const publicIp = await getPublicIp();
-        const response = await fetch('http://' + publicIp + ':3000/register', {
+        const backendUrl = import.meta.env.VITE_API_URL;
+        console.log(backendUrl + '/register');
+        const response = await fetch(backendUrl + '/register', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({ username, password })
         });
-        if (response.ok) {
-          const data = await response.json();
-          message = data.message; // Set the message from the response
-        } else {
-          message = 'Error: Registration failed'; // Set an error message
-        }
+        const data = await response.json()
+        message = data.message;
     }
 </script>
 

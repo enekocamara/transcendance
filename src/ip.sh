@@ -1,7 +1,4 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
-
-public_ip=$(curl -s https://httpbin.org/ip | jq -r .origin)
-export "public_ip=" >> .env
-cat .env >> temp.variables
+ip=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | awk 'NR==1{print $2}')
+echo "VITE_API_URL=http://${ip}:3000" > src/.envFrontend

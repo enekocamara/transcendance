@@ -39,11 +39,12 @@ services:
       -  /usr/src/app/node_modules
       #- ./frontend/src:/usr/src/app/src
     env_file:
-      - .env
+      - .envFrontend
     ports:
       -  "5173:5173"
+    depends_on:
+      - backend
     #command: /bin/sh -c "while sleep 1000; do :; done"
-
 
 networks:
   bridge:
@@ -62,3 +63,6 @@ volumes:
       type: none
       device: /Users/$USER/Desktop/transcendence/src/backend
       o: bind
+
+
+#docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' backend

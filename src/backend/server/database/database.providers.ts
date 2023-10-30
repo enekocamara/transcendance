@@ -4,7 +4,7 @@ import { WinstonService} from '../winston.service'
 //import retry from 'async-retry';
 import { CreateUserDto } from '../users/createUser.dto';
 import { AuthService } from '../authentification/auth.service';
-
+import { RegistrationStatus } from './registration-status.enum';
 
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy{
@@ -31,11 +31,11 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
         }
     }
 
-    async registerClient(createUserDto: CreateUserDto): Promise<boolean>{
+    async registerClient(createUserDto: CreateUserDto): Promise<RegistrationStatus>{
         const  client = await this.getClient();
         this.winston.log(client);
         if (!client)
-            return false;
+            return RegistrationStatus.ErrorDatabase;
         try {
             const query = "INSERT INTO public.users (username, password, image_index) VALUES($1, $2, $3) RETURNING *;";
             const params = [createUserDto.username, this.auth.hashPassword(createUserDto.password), 1];
@@ -44,10 +44,10 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
             this.winston.log(createUserDto.username + ' client regisered.');
         } catch (error) {
             this.winston.error('Database query error:', error.message);
-            return false;
+            return RegistrationStatus.AlreadyRegistered;
         }
         this.releaseClient(client);
-        return true;
+        return RegistrationStatus.Success;
     }
 
     async loginClient(createUserDto: CreateUserDto) : Promise<boolean>{

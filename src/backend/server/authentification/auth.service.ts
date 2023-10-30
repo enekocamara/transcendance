@@ -10,4 +10,4 @@ export class AuthService{
     async verifyPassword(storedHash: string, enteredPassword: string): Promise<boolean> {
         return await argon2.verify(storedHash, enteredPassword);
     }
-}
+}   
