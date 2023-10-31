@@ -3,7 +3,7 @@ import { Pool, Client } from 'pg';
 import { WinstonService} from '../winston.service'
 //import retry from 'async-retry';
 import { CreateUserDto } from '../users/createUser.dto';
-import { AuthService } from '../authentification/auth.service';
+import { HashService } from '../authentification/hash.service';
 import { RegistrationStatus } from './registration-status.enum';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
     private pool: Pool;
 
     constructor (private winston :WinstonService,
-                 private auth: AuthService){
+                 private auth: HashService){
         this.pool = new Pool({
             user: process.env.POSTGRES_USER,
             host: process.env.POSTGRES_HOST,
@@ -33,17 +33,18 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
 
     async registerClient(createUserDto: CreateUserDto): Promise<RegistrationStatus>{
         const  client = await this.getClient();
-        this.winston.log(client);
         if (!client)
             return RegistrationStatus.ErrorDatabase;
         try {
-            const query = "INSERT INTO public.users (username, password, image_index) VALUES($1, $2, $3) RETURNING *;";
-            const params = [createUserDto.username, this.auth.hashPassword(createUserDto.password), 1];
+            const query = "INSERT INTO public.users (username, password, image_index) VALUES($1, $2, $3);";
+            const password = await this.auth.hashPassword(createUserDto.password);
+            this.winston.log('Hashed password for user: ' + createUserDto.username + ' : [' + password + ']');
+            
+            const params = [createUserDto.username, password, 0];
             const result = await client.query(query, params);
-            this.winston.log('Hashed password for user: ' + createUserDto.username + ' : [' + createUserDto.password + ']');
             this.winston.log(createUserDto.username + ' client regisered.');
         } catch (error) {
-            this.winston.error('Database query error:', error.message);
+            this.winston.error('Database query error: cant register', error.message);
             return RegistrationStatus.AlreadyRegistered;
         }
         this.releaseClient(client);
@@ -55,31 +56,19 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy{
         if (!client)
             return false;
         try {
-            const query = `SELECT hashed_password FROM users WHERE username = $1`;
-            const params = createUserDto.username;
+            const query = `SELECT password FROM users WHERE username = $1`;
+            const params = [createUserDto.username];
             const result = await client.query(query, params);
-        } catch (error) {
-            this.winston.error('Database query error:', error.message);
-            return false;
-        } finally {
-            this.releaseClient(client);
-            return true;
-        }
-    }
-
-    async addPenguin() {
-        this.winston.log('PINGUINGGGGGGG');
-        const client = await this.getClient();
-        if (client != null)
-        {
-            try {
-                const query = "INSERT INTO public.users (username, password, image_index) VALUES($1, $2, $3) RETURNING *;";
-                const params = ['test_user', 'hashed_password', 1];
-                const result = await client.query(query, params);
-            } catch (error) {
-                this.winston.error('Database query error:', error.message);
+            if (result.length == 0){
+                return false;
+            }else{
+                const value =  await this.auth.verifyPassword(result.rows[0].password, createUserDto.password);
+                this.releaseClient(client);
+                return value;
             }
-            this.releaseClient(client);
+        } catch (error) {
+            this.winston.error('Database query error: can\'t find user to log in', error);
+            return false;
         }
     }
     //INSERT INTO penguins(id, name) VALUES ('1', 'ecamara')

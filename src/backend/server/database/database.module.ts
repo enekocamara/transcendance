@@ -3,7 +3,7 @@ import { DatabaseService } from './database.providers';
 import { AuthModule } from 'server/authentification/auth.module';
 
 @Module({
-    imports: [AuthModule, ],
+    imports: [AuthModule],
     providers: [DatabaseService],
 })
 
