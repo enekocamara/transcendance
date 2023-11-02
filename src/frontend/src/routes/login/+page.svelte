@@ -1,6 +1,9 @@
 <script>
     //import getPublicIp from '../../components/getPublicIp.js';
     //import {config} from 'dotenv';
+    import Cookies from 'js-cookie';
+    import { goto } from '$app/navigation';
+    //import { navigate } from 'svelte-routing';
     
     let username = "";
     let password = "";
@@ -17,7 +20,18 @@
             },
             body: JSON.stringify({ username, password })
         });
-        const data = await response.json()
+        const data = await response.json();
+        console.log(data);
+        if (response.ok)
+        {
+          const token = data.token;
+          Cookies.set('token', token, {
+            expires: 1,
+            httpOnly: true,
+          });
+          //navigate('/game', {replace: true});
+          goto('/game');
+        }
         message = data.message;
     }
 </script>
