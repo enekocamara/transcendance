@@ -28,23 +28,23 @@ services:
     ports:
       - "3000:3000"
 
-  frontend:
-    container_name: frontend
-    build: ./frontend
-    #restart: always
-    networks:
-      - bridge
-    volumes:
-      - ./frontend:/usr/src/app
-      -  /usr/src/app/node_modules
-      #- ./frontend/src:/usr/src/app/src
-    env_file:
-      - .envFrontend
-    ports:
-      -  "5173:5173"
-    depends_on:
-      - backend
-    #command: /bin/sh -c "while sleep 1000; do :; done"
+  #frontend:
+  #  container_name: frontend
+  #  build: ./frontend
+  #  #restart: always
+  #  networks:
+  #    - bridge
+  #  volumes:
+  #    - ./frontend:/usr/src/app
+  #    -  /usr/src/app/node_modules
+  #    #- ./frontend/src:/usr/src/app/src
+  #  env_file:
+  #    - .envFrontend
+  #  ports:
+  #    -  "5173:5173"
+  #  depends_on:
+  #    - backend
+  #  #command: /bin/sh -c "while sleep 1000; do :; done"
 
 networks:
   bridge:
