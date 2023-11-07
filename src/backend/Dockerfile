@@ -20,6 +20,7 @@ RUN set -eux; \
 		libbluetooth-dev \
 		tk-dev \
 		uuid-dev \
+		python3-venv \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -122,6 +123,10 @@ RUN set -eux; \
 	\
 	pip --version
 
-COPY . .
+WORKDIR /app
 
-CMD ["python3", "wait.py"]
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]

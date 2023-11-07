@@ -1,0 +1,9 @@
+/* Diseños principales */
+#cuadro-formulario-registro {
+	width: 1000px;
+	position: relative;
+	left: 50%;
+	margin-top: 75px;
+	margin-left: -500px;
+	border-radius: 25px;
+}

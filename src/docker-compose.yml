@@ -21,30 +21,30 @@ services:
     networks:
       - bridge
     volumes:
-      -  ./backend/server:/usr/src/app/src
+      -  ./backend:/app
       -  /usr/src/app/node_modules
     env_file:
       - .env
     ports:
-      - "3000:3000"
+      - "5000:5000"
 
-  #frontend:
-  #  container_name: frontend
-  #  build: ./frontend
-  #  #restart: always
-  #  networks:
-  #    - bridge
-  #  volumes:
-  #    - ./frontend:/usr/src/app
-  #    -  /usr/src/app/node_modules
-  #    #- ./frontend/src:/usr/src/app/src
-  #  env_file:
-  #    - .envFrontend
-  #  ports:
-  #    -  "5173:5173"
-  #  depends_on:
-  #    - backend
-  #  #command: /bin/sh -c "while sleep 1000; do :; done"
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    #restart: always
+    networks:
+      - bridge
+    volumes:
+      #- ./frontend:/usr/src/app/src
+      - ./frontend:/usr/share/nginx/html
+      -  /usr/src/app/node_modules
+    env_file:
+      - .envFrontend
+    ports:
+      -  "80:80"
+    depends_on:
+      - backend
+    #command: /bin/sh -c "while sleep 1000; do :; done"
 
 networks:
   bridge:

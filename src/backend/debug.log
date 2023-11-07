@@ -1,0 +1,783 @@
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user new tried to register.
+Internal Server Error: /register
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/psycopg/cursor.py", line 737, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UniqueViolation: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=(new) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/server/views.py", line 19, in register_user
+    cursor.execute("INSERT INTO users (username, password, image_index) VALUES (%s, %s,%t)", [username, password, 0])
+  File "/usr/local/lib/python3.13/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/usr/local/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.13/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/psycopg/cursor.py", line 737, in execute
+    raise ex.with_traceback(None)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=(new) already exists.
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user holaaaa tried to register.
+User holaaaa registered successfully.
+user holaaaa tried to register.
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+Not Found: /register/
+Not Found: /register/
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user new  tried to register.
+User new  registered successfully.
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user twwt tried to register.
+User twwt registered successfully.
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user dwdwdw tried to register.
+User dwdwdw registered successfully.
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user wdwd tried to register.
+User wdwd registered successfully.
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+user twwt tried to register.
+Internal Server Error: /register
+/app/server/settings.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/settings.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/settings.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/settings.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+user twwt tried to register.
+Internal Server Error: /register
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/settings.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/app/server/settings.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader
+/app/server/views.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+Watching for file changes with StatReloader

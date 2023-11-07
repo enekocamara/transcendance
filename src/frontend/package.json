@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.2",
+    "sass": "^1.69.5"
+  },
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "ft_transcendence frontend",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
