@@ -1,1 +1,4 @@
 django-admin startproject projectname
+
+User
+curl -X POST -H "Content-Type: application/json" -d '{"username":"eneko","password":"camara12"}' http://localhost:5000/login

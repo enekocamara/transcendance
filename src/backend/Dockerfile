@@ -25,7 +25,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 ENV GPG_KEY 7169605F62C751356D054A26A821E680E5FA6305
-ENV PYTHON_VERSION 3.13.0a1
+ENV PYTHON_VERSION 3.12.0
 
 RUN set -eux; \
 	\
@@ -123,10 +123,13 @@ RUN set -eux; \
 	\
 	pip --version
 
+
 WORKDIR /app
 
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
+
+COPY . .
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
