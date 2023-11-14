@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-$^ghi$(3rrs_4psfvk77j(yb50$#l46b25@t-4ky+so8mlv#j4
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOWED_ORIGINS = ['http://localhost']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -44,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders'
+    'corsheaders',
+    'members'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -90,6 +92,7 @@ DATABASES = {
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
         'HOST': os.environ.get('POSTGRES_HOST'),  # Use the container name
         'PORT': os.environ.get('DATABASE_PORT'),  # Specify the port if different
+        'CONN_MAX_AGE': 600,
     }
 }
 
@@ -134,6 +137,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/members/login/'
+
+AUTH_USER_MODEL = 'members.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

@@ -11,8 +11,7 @@ $("#registerUser").submit(function(event) {
 
 		return false;
     }
-
-	var apiUrl = "http://10.13.8.2:5000/register";
+	var apiUrl = "http://10.13.8.2:5000/members/register/";
 
     var data = {
         "username": username,
@@ -32,6 +31,7 @@ $("#registerUser").submit(function(event) {
                 $("#registrationGood").slideDown('slow');
             }, 5000);
             window.location.href = "http://10.13.8.2";
+            //window.location.href = process.env.API_URL;
         },
 
         error: function(error) {

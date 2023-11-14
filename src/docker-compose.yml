@@ -7,8 +7,7 @@ services:
     networks:
       - bridge
     volumes:
-     - db:/var/lib/postgresql/data
-     - ./postgre/tools:/docker-entrypoint-initdb.d
+     - ./data/postgre:/var/lib/postgresql/data
     env_file:
       - .env
     expose:
@@ -23,10 +22,13 @@ services:
     volumes:
       -  ./backend:/app
       -  /usr/src/app/node_modules
+      - ./backend/media/:/media/
     env_file:
       - .env
     ports:
       - "5000:5000"
+    depends_on:
+      - postgre
 
   frontend:
     container_name: frontend
@@ -35,13 +37,13 @@ services:
     networks:
       - bridge
     volumes:
-      #- ./frontend:/usr/src/app/src
-      - ./frontend:/usr/share/nginx/html
+      - ./frontend:/usr/src/app/src
+      #- ./frontend:/usr/share/nginx/html
       -  /usr/src/app/node_modules
     env_file:
-      - .envFrontend
+      - frontend/.env
     ports:
-      -  "80:80"
+      -  "5174:5174"
     depends_on:
       - backend
     #command: /bin/sh -c "while sleep 1000; do :; done"
@@ -49,20 +51,5 @@ services:
 networks:
   bridge:
     driver: bridge
-
-volumes:
-  db:
-    driver: local
-    driver_opts:
-      type: none
-      device: /Users/$USER/Desktop/transcendence/src/data/postgre
-      o: bind
-  backend:
-    driver: local
-    driver_opts:
-      type: none
-      device: /Users/$USER/Desktop/transcendence/src/backend
-      o: bind
-
 
 #docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' backend

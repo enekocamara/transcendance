@@ -1,0 +1,19 @@
+FROM node:latest-alpine as build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# etapa de producción
+FROM nginx:1.13.12-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+# Use an official web server image as the base
+#FROM nginx:latest
+
+# Copy your static files to the container
+#COPY . /usr/share/nginx/html
