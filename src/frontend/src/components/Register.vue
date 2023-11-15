@@ -1,31 +1,102 @@
 <style scoped>
   /* Add any custom styles for your alert */
-  .registerForm {
+ /* .registerForm {
     text-align: center;
     margin: auto;
     width: 60%;
     padding: 10px;
+    background-color:rgba(128, 255, 212, 0.2);
+    border-radius: 20px;
   }
+*/
 
-  .alert {
-    margin: auto;
-    width: 60%;
-    padding: 10px;
-    border: 1px solid #d9534f;
-    border-radius: 4px;
-    color: rgb(69, 55, 55);
-    background-color: #f2dede;
-  }
+.registerForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 20px;
+  width: 60%;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.title{
+  font-size: 40px;
+  text-align: left;
+}
+
+.alert {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #d9534f;
+  border-radius: 4px;
+  color: rgb(69, 55, 55);
+  background-color: #f2dede;
+}
+
+.form-control{
+  background-color: rgb(230, 238, 238);
+  background: linear-gradient(to bottom,rgb(230, 238, 238), rgba(197, 204, 211,0.3));
+  border: none;
+  color:black;
+  margin-top: 5px;
+}
+
+.form-control:active{
+  border:none;
+  outline:none;
+}
+
+.form-control:focus {
+  border-color: white;
+  outline: solid 1px rgb(137, 137, 137);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075), 0 0 8px rgba(157, 157, 157, 0.6);
+}
+
+.entry {
+  font-size: 20px;
+  margin-top: 20px;
+  color: rgb(80,80,80)
+}
+
+.btn{
+  margin-top: 20px;
+  background-color:/* rgb(209, 215, 220)*/rgb(117, 225, 193);
+  border:none;
+  outline:none;
+}
+
+.btn:hover{
+  outline:none;
+  border:none;
+}
+
+.btn:active{
+  background-color: rgb(117, 225, 193);
+  outline:none;
+  border:none;
+}
+
+.btn:focus{
+  outline: solid 1px rgb(137, 137, 137);
+}
+
 </style>
 
 <template>
     <div class="registerForm">
-      <h1>Register</h1><br><br>
       <form @submit.prevent="submitForm">
-        <input class="form-control" v-model="username" type="text" placeholder="Username"  name="username" required /><br>
-        <input class="form-control" v-model="password1" type="password" placeholder="Password" name="password1" required /><br>
-        <input class="form-control" v-model="password2" type="password" placeholder="Repeat password" name="password2" required/><br><br>
-        <button type="submit" class="btn btn-warning">Register</button>
+        <div class="title">Sign Up</div>
+        <h1 class="entry">Username</h1>
+        <input class="form-control" v-model="username" type="text"  name="username" required />
+        <h1 class="entry">Password</h1>
+        <input class="form-control" v-model="password1" type="password"  name="password1" required />
+        <h1 class="entry">Repeat Password</h1>
+        <input class="form-control" v-model="password2" type="password" name="password2" required/>
+        <button type="submit" class="btn">Sign Up</button>
       </form>
     </div>
     <div v-if="errorHtml" v-html="errorHtml" class="alert"></div>

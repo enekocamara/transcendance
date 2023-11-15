@@ -1,11 +1,12 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from 'vue-router';
+import HelloWorld from './components/HelloWorld.vue';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg" style="background-color: #69e1bd">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <div class="d-flex align-items-center">
         <router-link to="/" class="navbar-brand">PONGWARS</router-link>
@@ -26,24 +27,51 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
         </ul>
 
         <form class="d-flex">
-          <router-link to="/login" class="btn btn-outline-success btn-border-color" style="margin-right: 5px;">Log In</router-link>
+          <router-link to="/login" class="btn btn-outline-success btn-border-color">Log In</router-link>
           <router-link to="/register" class="btn btn-outline-success btn-border-color">Register</router-link>
         </form>
       </div>
     </div>
   </nav>
 
-
   <RouterView />
 </template>
 
 <style scoped>
-.btn-outline-success {
-  background-color: white;
+
+.navbar{
+  /*background-color: #69e1bd;*/
+  background: linear-gradient(to bottom, #69e1bd, rgba(106, 226, 190, 0.7));
+}
+.navbar-collapse.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Change background color */
+  color: #fff; /* Change text color */
+  padding: 10px; /* Adjust padding */
+  /* Add any other styles as needed */
 }
 
-.btn-border-color {
+.navbar-brand{
+  margin-left: 15px;
+}
+
+.btn{
+  margin-right: 20px;
+  color: black;
   background-color: white;
+  /*border: 1px solid black;*/
+  border:none;
+  outline:none;
+}
+
+.btn:hover{
+  background-color: rgb(236, 237, 243);
+  color: black;
+  box-shadow: 1px 1px 1px rgb(216, 216, 216);
+  transition: background-color 0.5s ease, box-shadow 0.3s ease;
 }
 
 header {
@@ -51,7 +79,7 @@ header {
   max-height: 100vh;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 2000px) {/*1024*/
   header {
     display: flex;
     place-items: center;

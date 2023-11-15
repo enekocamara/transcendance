@@ -28,7 +28,7 @@
 </style>
 
 <template>
-    <div class="registerForm" style="padding-right: 350px;padding-left: 350px;">
+    <div class="registerForm">
       <h1>Log In</h1><br><br>
       <form @submit.prevent="submitForm">
         <input class="form-control" v-model="username" type="text" placeholder="Username"  name="username" required /><br>

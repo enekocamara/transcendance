@@ -3,5 +3,6 @@
 
 # Ignore node modules
 ./src/app/backend/node_modules/*
+.env
 
 .DS_Store
