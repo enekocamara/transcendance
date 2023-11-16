@@ -19,10 +19,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            <router-link to="/game" class="btn">Play</router-link>
           </li>
         </ul>
 

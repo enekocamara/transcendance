@@ -2,7 +2,6 @@
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import RegisterApp from './RegisterApp.vue'
 import router from './router'
 
 import 'popper.js';
@@ -15,7 +14,5 @@ const app = createApp(App)
 const registerApp = createApp(RegisterApp)
 
 app.use(router)
-registerApp.use(router)
 
 app.mount('#app')
-registerApp.mount('#register')

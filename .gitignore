@@ -1,5 +1,5 @@
 # Ignore data files
-./src/data/
+postgre
 
 # Ignore node modules
 ./src/app/backend/node_modules/*
