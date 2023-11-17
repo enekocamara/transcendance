@@ -48,6 +48,18 @@ services:
       - backend
     #command: /bin/sh -c "while sleep 1000; do :; done"
 
+  matchmaking:
+    container_name: matchmaking
+    build: ./matchmaking/docker
+    volumes:
+      - ./matchmaking/src:/app/src
+      - ./matchmaking/Cargo.toml:/app/Cargo.toml
+    networks:
+      - bridge
+    command: cargo run
+    ports:
+      - "5555:5555"
+
 networks:
   bridge:
     driver: bridge
