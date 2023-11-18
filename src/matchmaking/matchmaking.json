@@ -1,0 +1,5 @@
+{
+    "name" : "matchmaking",
+    "max_players" : 200,
+    "max_lobbies" : 100
+}
