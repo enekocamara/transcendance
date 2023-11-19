@@ -156,7 +156,6 @@ fn check_queue(queues :  Arc<Mutex<QueuesSys>>){
     let mut last_frame = Instant::now();
     let mut tic_count = 0;
     loop {
-        let elapsed_frame = last_frame.elapsed();
         if tic_count >= tic_rate{
             match queues.lock() {
                 Ok(mut guard) => {
@@ -174,10 +173,36 @@ fn check_queue(queues :  Arc<Mutex<QueuesSys>>){
         }
         tic_count += 1;
         frame(&mut data);
+        let elapsed_frame = last_frame.elapsed();
+        if elapsed_frame < tic_time {
+            std::thread::sleep(tic_time - elapsed_frame);
+        }else{
+            println!("Load too heavy...");
+        }
+        last_frame = Instant::now();
+    }
+}
+
+fn connections_function(){
+    let tic_time = Duration::from_millis(1000);
+    let mut last = Instant::now();
+    loop {
+        match queues.lock() {
+            Ok(mut guard) => {
+                println!("Duel:{},Group{},Battalion{}",guard.duel_queue.len(),guard.group_queueu.len(),guard.batallion_queueu.len());
+                if guard.duel_queue.len() >= 2 && data.num_of_active_players + 2 < Settings::MaxPlayerNum as u16{
+                    handle_queue(&mut data, &mut guard.duel_queue, LobbyType::Duel);}
+                else if guard.group_queueu.len() >= 4 && data.num_of_active_players + 4 < Settings::MaxPlayerNum as u16{
+                    handle_queue(&mut data, &mut guard.group_queueu, LobbyType::Group);}
+                else if guard.batallion_queueu.len() >= 10 && data.num_of_active_players + 10 < Settings::MaxPlayerNum as u16{
+                    handle_queue(&mut data, &mut guard.batallion_queueu, LobbyType::Battalion);}
+            },
+            Err(_)=>{}
+        }
+        let elapsed_frame = last.elapsed();
         if elapsed_frame < tic_time {
             std::thread::sleep(tic_time - elapsed_frame);
         }
-        last_frame = Instant::now();
     }
 }
 
@@ -193,6 +218,7 @@ fn lauch(){
     let warp_handle 
     = thread::spawn(move || tokio::runtime::Runtime::new().unwrap().block_on(warp_function(cloned_queue1)));
     let queue_handle = thread::spawn( move || check_queue(cloned_queue2));
+    let reqwest_handle = thread::spawn (move || )
     warp_handle.join().unwrap();
     queue_handle.join().unwrap();
 }
