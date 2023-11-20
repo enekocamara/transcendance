@@ -1,4 +1,8 @@
+use tokio::runtime::Handle;
 #[allow(unused_imports)]
+
+/*when somebody connects through http, they receive a key that is paired with their user, if somebody else tryes to connect
+  with their username they key pair will be invalidated, restarting the proccess*/
 
 use warp::filters::multipart;
 use warp::reply::WithStatus;
@@ -8,9 +12,11 @@ use serde_json::Value;
 use serde::Deserialize;
 
 use core::fmt;
+use std::alloc::System;
+use std::os::windows::fs::OpenOptionsExt;
 use std::thread;
 use std::sync::{Arc, Mutex};
-use std::collections::VecDeque;
+use std::collections::{VecDeque,HashMap, HashSet};
 use std::time::{Duration, Instant};
 
 
@@ -20,7 +26,11 @@ mod ServerSettings;
 
 use ServerSettings::ServerSettings::Settings;
 
+use std::net::{TcpListener, TcpStream};
+use mio::{Events, Interest, Poll, Token, net};
+use mio::net::{TcpListener as MioTcpListener, TcpStream as MioTcpStream};
 
+const SERVER: Token = Token(0);
 
 #[repr(u8)]
 #[derive(Deserialize,Copy,Clone,PartialEq)]
@@ -68,13 +78,51 @@ struct Data{
 }
 
 
+struct Server {
+    listener :  MioTcpListener,
+    clients: HashMap<Token, MioTcpStream>,
+    token_counter: usize,
+}
+
+impl Server {
+    fn new(listener: MioTcpListener)-> Self{
+        let mut server =  Self {
+            listener: listener,
+            clients: HashMap::new(),
+            token_counter: 1,
+        };
+        return server;
+    }
+    fn accept_connection(&mut self, poll: &Poll) -> Option<Token>{
+        let connection = self.listener.accept();
+        if let Ok((mut stream ,_)) = self.listener.accept(){
+            let token = Token(self.token_counter);
+            self.token_counter += 1;
+            self.clients.insert(token, stream);
+            Some(token)
+        } else {
+            None
+        }
+    }
+}
+
 struct QueuesSys{
+    connection_pending: HashMap::<[char;10], LobbyType>,
     duel_queue:  VecDeque<[char;10]>,
     group_queueu: VecDeque<[char;10]>,
     batallion_queueu: VecDeque<[char;10]>,
     num_of_active_lobbies : u16,
     num_of_active_players : u16,
+    server: Server,
 }
+
+#[repr(u8)]
+enum ClientState{
+    Unidentifiend,//a token will be send back to the client with the http request, it will have the ip,port,and their key. Key and Username are paired
+    Identified, //authorised will continue to queues
+    Unauthorised,//username found, key missmatch
+}
+
 #[repr(u8)]
 enum MessageType{
     MatchmakingConnectionInfo,
@@ -109,7 +157,9 @@ where
 fn join(player : Input, queues : Arc<Mutex<QueuesSys>>) -> impl Reply{
     match queues.lock() {
         Ok(mut guard) => {
-            match player.lobby_type {
+            guard.connection_pending.insert(player.username, player.lobby_type)
+                .unwrap();
+           /* match player.lobby_type {
                 LobbyType::Duel => guard.duel_queue.push_back(player.username),
                 LobbyType::Group => guard.group_queueu.push_back(player.username),
                 LobbyType::Battalion => guard.batallion_queueu.push_back(player.username),
@@ -120,7 +170,7 @@ fn join(player : Input, queues : Arc<Mutex<QueuesSys>>) -> impl Reply{
                     let json_response = json(&response);
                     return warp::reply::with_status(json_response, StatusCode::INTERNAL_SERVER_ERROR);
                 }
-            }
+            }*/
             //String::from("added to the queue");
             let response = Response{
                 message : "{\"ConnectKey\":\"SECRET_KEY\"}",
@@ -187,6 +237,14 @@ fn logic_manager(data :  Arc<Mutex<Data>>){
 }
 
 fn queues_manager(data : Arc<Mutex<Data>>, queues : Arc<Mutex<QueuesSys>>){
+    let mut poll = Poll::new().unwrap();
+    let mut events = Events::with_capacity(128);
+    match  queues.lock(){
+        Ok(mut guarded_queues) => {poll.registry()
+            .register(&mut guarded_queues.server.listener, SERVER, Interest::READABLE).unwrap();},
+        Err(_) => { panic!("No register");}
+    }
+
     let tic_time = Duration::from_millis(1000);
     let mut last = Instant::now();
     loop {
@@ -212,9 +270,23 @@ fn queues_manager(data : Arc<Mutex<Data>>, queues : Arc<Mutex<QueuesSys>>){
                         guarded_queues.num_of_active_lobbies += 1;
                     }
                 }
+                poll.poll(&mut events, Some(Duration::from_millis(50))).unwrap();
+                for event in events.iter(){
+                    match event.token() {
+                        SERVER => {
+                            if let Some(token) =  guarded_queues.server.accept_connection(&poll){
+
+                            }
+                        },
+                        other => {
+                            
+                        } 
+                    }
+                }
             },
             Err(_)=>{}
         }
+
         let elapsed_frame = last.elapsed();
         if elapsed_frame < tic_time {
             std::thread::sleep(tic_time - elapsed_frame);
@@ -243,13 +315,19 @@ fn handle_queue(data : Arc<Mutex<Data>>, queue : &mut VecDeque<[char;10]>, lobby
 }
 
 fn lauch(){
+    let mut poll = Poll::new().unwrap();
+    let mut events = Events::with_capacity(128);
+    let addr = "127.0.0.1:5556".parse().unwrap();
+    let listener = MioTcpListener::bind(addr).unwrap();
     let queues : Arc<Mutex<QueuesSys>> = 
         Arc::new(Mutex::new(QueuesSys {
+            connection_pending : HashMap::<[char;10], LobbyType>::new(),
             duel_queue: VecDeque::<[char;10]>::new(),
             group_queueu:VecDeque::<[char;10]>::new(),
             batallion_queueu: VecDeque::<[char;10]>::new(),
             num_of_active_lobbies : 0,
             num_of_active_players : 0,
+            server : Server::new(listener)
         }
     ));
 
@@ -258,6 +336,7 @@ fn lauch(){
             lobbies : array_init(|_| Lobby::default()),
             free_lobbies : (0..Settings::MaxLobbyNum as usize).collect(),
             number_of_active_lobbies : 0,
+
         } 
     ));
 

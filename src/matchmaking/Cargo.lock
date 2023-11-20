@@ -491,6 +491,7 @@ name = "matchmaking"
 version = "0.1.0"
 dependencies = [
  "array-init",
+ "mio",
  "reqwest",
  "serde",
  "serde_json",
@@ -536,6 +537,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3dce281c5e46beae905d4de1870d8b1509a9142b62eedf18b443b011ca8343d0"
 dependencies = [
  "libc",
+ "log",
  "wasi",
  "windows-sys",
 ]
