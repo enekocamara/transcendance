@@ -337,7 +337,7 @@ fn lauch(){
             free_lobbies : (0..Settings::MaxLobbyNum as usize).collect(),
             number_of_active_lobbies : 0,
 
-        } 
+            } 
     ));
 
     let cloned_queue1 = queues.clone();

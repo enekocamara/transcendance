@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const app = createApp(App)
-const registerApp = createApp(RegisterApp)
+//const registerApp = createApp(RegisterApp)
 
 app.use(router)
 

@@ -1,5 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-class CustomUser(AbstractUser):
-    profile_image = models.ImageField(upload_to='/media/profile_images/', null=True, blank=True)
+#from ..members.models import *
+
+from ..members.models import CustomUser
+
+
+class MatchmakingQueue(models.Model):
+    players = models.ManyToManyField(CustomUser)

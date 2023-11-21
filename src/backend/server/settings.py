@@ -26,15 +26,12 @@ SECRET_KEY = 'django-insecure-$^ghi$(3rrs_4psfvk77j(yb50$#l46b25@t-4ky+so8mlv#j4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost',
-    'http://localhost:5000'
-    ]
+ALLOWED_HOSTS = []
+
 
 CORS_ALLOW_CREDENTIALS = True 
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 # Application definition
 
@@ -45,11 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'members',
+    'channels',
     'corsheaders',
-    'members'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,8 +56,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
+
+
+
 
 ROOT_URLCONF = 'server.urls'
 
@@ -78,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'server.wsgi.application'
+#WSGI_APPLICATION = 'server.wsgi.application'
 
 
 # Database
@@ -109,14 +110,23 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+            'filename': 'bebug.log',  # Specify the path to your log file
         },
     },
     'root': {
         'handlers': ['file'],
         'level': 'DEBUG',
     },
+    'loggers': {
+        'channels': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }
+
+
 
 
 # Password validation
@@ -162,3 +172,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+]
+# CORS_ALLOW_ALL_ORIGINS = [
+#     'http://localhost:5174',
+#     'http://frontend:5174',
+
+# ]

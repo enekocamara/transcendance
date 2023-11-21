@@ -12,5 +12,10 @@ python manage.py createsuperuser --username $DJANGO_SUPERUSER_USERNAME --email $
 
 echo 'lauching...'
 
+pip install 'uvicorn[standard]'
 
-python manage.py runserver  0.0.0.0:5000
+export DJANGO_SETTINGS_MODULE=server.settings
+
+uvicorn server.asgi:application --reload --port 5000
+
+#python manage.py runserver  0.0.0.0:5000

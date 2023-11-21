@@ -62,44 +62,53 @@
         username: this.username,
 
       };
-      const apiUrl = `${API_URL}/matchmaking/`;
-      console.log('URL: ', apiUrl)
-      console.log('Submitted:', this.username, this.password1, this.password2);
-      this.matchmakingMessage = 'requesting access...'
-      axios.post(apiUrl, data)
-        .then(response => {
-          this.matchmakingMessage = 'Port received, connecting to servers...';
-          const serverIP = 'http://10.13.8.2';
-          const serverPort = 4915;
-          const socket = new WebSocket(`ws://${serverIP}:${serverPort}`);
-          setTimeout(() => {
-            if (socket.readyState === WebSocket.OPEN) {
-              this.matchmakingMessage ='WebSocket connection is open.';
-            } else {
-              this.matchmakingMessage ='WebSocket connection failed or timed out.';
-              socket.close(); // Close the connection if needed
-            }
-          }, 5000);
-          
-          if (socket.readyState != socket.OPEN)
-            this.matchmakingMessage = 'Failed to connect to servers. Try again'
-          else{
-            this.matchmakingMessage = 'Connected to servers.'
-            /*while (true){
-            }*/
-          }
-          console.log(response.data);
-        })
-        .catch(error => {
-          if (error.response && error.response.data && error.response.data.errors){
-            const errorHtml = error.response.data.errors;
-            this.errorHtml = errorHtml;
-            //this.message = error.message;
-          } else {
-            //this.message = 'Unspecified error ocurrend.Try again.'
-          }
-         // console.error(message);
-        });
+      //const apiUrl = `${API_URL}/matchmaking/`;
+      //console.log('URL: ', apiUrl)
+      //console.log('Submitted:', this.username, this.password1, this.password2);
+      //this.matchmakingMessage = 'requesting access...'
+      //axios.post(apiUrl, data)
+      //  .then(response => {
+      //this.matchmakingMessage = 'Port received, connecting to servers...';
+      //const serverIP = '10.13.7.2';
+      //const serverPort = 4915;
+      const socket = new WebSocket("ws://127.0.0.1/ws/matchmaking/");
+      socket.addEventListener('open', (event) => {
+        console.log('WebSocket connection opened:', event);
+      });
+      socket.addEventListener('error', (event) => {
+        console.error('WebSocket error:', event);
+      });
+      socket.addEventListener('close', (event) => {
+       console.log('WebSocket connection closed:', event);
+      });
+      //const socket = new WebSocket(`ws://${serverIP}:${serverPort}`);
+      setTimeout(() => {
+        if (socket.readyState === WebSocket.OPEN) {
+          this.matchmakingMessage ='WebSocket connection is open.';
+        } else {
+          this.matchmakingMessage ='WebSocket connection failed or timed out.';
+          socket.close(); // Close the connection if needed
+        }
+      }, 5000);
+      
+      if (socket.readyState != socket.OPEN)
+        this.matchmakingMessage = 'Failed to connect to servers. Try again'
+      else{
+        this.matchmakingMessage = 'Connected to servers.'
+        /*while (true){
+        }*/
+      }
+      //  })
+      //  .catch(error => {
+      //    if (error.response && error.response.data && error.response.data.errors){
+      //      const errorHtml = error.response.data.errors;
+      //      this.errorHtml = errorHtml;
+      //      //this.message = error.message;
+      //    } else {
+      //      //this.message = 'Unspecified error ocurrend.Try again.'
+      //    }
+      //   // console.error(message);
+      //  });
     },
   },
 };

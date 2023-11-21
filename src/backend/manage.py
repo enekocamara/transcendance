@@ -2,9 +2,6 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import multiprocessing
-
-from server import matchmaking 
 
 import logging
 
@@ -24,6 +21,4 @@ def main():
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
-    #background_process = multiprocessing.Process(target=matchmaking.matchmaking)
-    #background_process.start()
     main()

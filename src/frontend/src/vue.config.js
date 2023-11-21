@@ -1,1 +1,1 @@
-export const API_URL = 'http://10.13.8.2:5000';//process.env.VUE_APP_API_URL
+export const API_URL = 'http://10.13.7.2:5000';//process.env.VUE_APP_API_URL
